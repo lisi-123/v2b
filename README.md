@@ -131,6 +131,8 @@ php artisan horizon
 Processes: 填写 "1"
 填写后点击 "Confirm（确定）" 添加即可运行。
 
+<br>
+
 本教程仅供自用，有问题请联系 [https://t.me/@talkingstick233_bot](https://t.me/talkingstick233_bot
 )
 
