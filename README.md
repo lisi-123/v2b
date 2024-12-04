@@ -53,6 +53,8 @@ pcntl_signal
 
 在 "PHP Version" 选择 PHP 7.4
 
+添加站点后，把站点里自动生成的文件全部删掉
+
 
 <br>
 
