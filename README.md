@@ -4,7 +4,7 @@
 
 你需要在 aaPanel 选择你的系统获得安装方式。这里以 CentOS 7+ 作为系统环境进行安装。
 
-官方建议使用 CentOS 7+ 安装aaPanel，其他系统可能会有未知问题（其实Debian也没啥问题）。
+官方建议使用 CentOS 7+ 安装aaPanel，其他系统可能会有未知问题（其实应该没啥问题）。
 
 ```bash
 yum install -y wget && wget -O install.sh http://www.aapanel.com/script/install_6.0_en.sh && bash install.sh
