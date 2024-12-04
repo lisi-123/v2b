@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V2Board 安装步骤</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        ol {
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .code-box {
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>V2Board 安装步骤</h1>
+
+        <h2>1. 配置 aaPanel</h2>
+        <p>你需要在 aaPanel 选择你的系统获得安装方式。这里以 CentOS 7+ 作为系统环境进行安装。</p>
+        <p>官方建议使用 CentOS 7+ 安装aaPanel，其他系统可能会有未知问题（其实debian好像也没啥问题）。</p>
+        <pre>yum install -y wget && wget -O install.sh http://www.aapanel.com/script/install_6.0_en.sh && bash install.sh</pre>
+        <p>也可以去这里寻找对应版本的宝塔开心版：<a href="https://www.hostcli.com/" target="_blank">https://www.hostcli.com/</a></p>
+        <p>安装完成后我们登陆 aaPanel 进行环境的安装，选择使用 LNMP 环境安装方式，并勾选以下内容：</p>
+        <ul>
+            <li>☑️ Nginx 1.17</li>
+            <li>☑️ MySQL 5.6</li>
+            <li>☑️ PHP 7.4</li>
+        </ul>
+        <p>选择 "Fast" 快速编译后进行安装。</p>
+
+        <h2>2. 安装 Redis、fileinfo</h2>
+        <p>通过 aaPanel 面板 > App Store（软件商店） > 找到 PHP 7.4，点击 "Setting（设置）" > "Install extensions（安装扩展）"，安装 redis 和 fileinfo 扩展。</p>
+
+        <h2>3. 解除被禁止的函数</h2>
+        <p>通过 aaPanel 面板 > App Store > 找到 PHP 7.4，点击 "Setting（设置）" > "Disabled functions（禁用函数）" 将以下函数从列表中删除：</p>
+        <pre>putenv, proc_open, pcntl_alarm, pcntl_signal</pre>
+
+        <h2>4. 添加站点</h2>
+        <p>通过 aaPanel 面板 > "Website（网站）" > "Add site（添加站点）" 添加站点：</p>
+        <ul>
+            <li>在 "Domain（域名）" 填入你指向服务器的域名</li>
+            <li>在 "Database（数据库）" 选择 MySQL</li>
+            <li>在 "PHP Version" 选择 PHP 7.4</li>
+        </ul>
+
+        <h2>5. 安装 V2Board（xiao版本）</h2>
+        <p>通过 SSH 登录到服务器后，访问站点路径，如：/www/wwwroot/你的站点域名。</p>
+        <pre>cd /www/wwwroot/你的站点域名</pre>
+        <p>然后执行以下命令：</p>
+        <pre>git clone https://github.com/wyx2685/v2board.git ./</pre>
+        <p>安装 V2Board：</p>
+        <pre>sh init.sh</pre>
+
+        <h2>6. 配置站点目录及伪静态</h2>
+        <p>添加站点后，编辑站点设置：</p>
+        <ul>
+            <li>Site directory(网站目录) > Running directory（运行目录）: 选择 <strong>/public</strong> 并保存。</li>
+            <li>URL rewrite 填入以下伪静态信息：</li>
+        </ul>
+
+        <div class="code-box">
+            <pre id="rewrite-code">
+location /downloads {
+}
+
+location / {  
+    try_files $uri $uri/ /index.php$is_args$query_string;  
+}
+
+location ~ .*\.(js|css)?$ {
+    expires 1h;
+    error_log off;
+    access_log /dev/null; 
+}
+</pre>
+            <button class="copy-btn" onclick="copyCode('rewrite-code')">复制</button>
+        </div>
+
+        <h2>7. 配置定时任务</h2>
+        <p>通过 aaPanel 面板配置定时任务：</p>
+        <ol>
+            <li>在 "Cron" 中选择：
+                <ul>
+                    <li>Type of Task（任务类型）: 选择 "Shell Script（Shell脚本）"</li>
+                    <li>Name of Task（任务名称）: 填写 "v2board"</li>
+                    <li>Period（执行周期）: 选择 "N Minutes" 和 1 分钟</li>
+                    <li>Script content（脚本内容）: 填写以下内容：</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="code-box">
+            <pre id="cron-script">
+php /www/wwwroot/你的站点域名/artisan schedule:run</pre>
+            <button class="copy-btn" onclick="copyCode('cron-script')">复制</button>
+        </div>
+
+        <h2>8. 启动队列服务</h2>
+        <p>V2Board 强依赖队列服务，必须启动队列服务才能正常使用。以下是使用 aaPanel 中的 Supervisor 守护队列服务的方法：</p>
+        <ol>
+            <li>在 aaPanel 面板中，选择 "App Store（应用商店）" > "Tools（系统工具）"。</li>
+            <li>找到 "Supervisor（Supervisor管理器）" 并进行安装。</li>
+            <li>安装完成后，点击设置 > "Add Daemon（添加守护进程）" 填写以下信息：
+                <ul>
+                    <li>Name: 填写 "V2board"</li>
+                    <li>Run User（启动用户）: 选择 "www"</li>
+                    <li>Run Dir（运行目录）: 选择站点目录</li>
+                    <li>Start Command（启动命令）: 填写 <pre>php artisan horizon</pre></li>
+                    <li>Processes: 填写 "1"</li>
+                </ul>
+            </li>
+        </ol>
+        <p>填写后点击 "Confirm（确定）" 添加即可运行。</p>
+
+    </div>
+
+    <script>
+        function copyCode(id) {
+            const codeText = document.getElementById(id).innerText;
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = codeText;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempTextArea);
+            alert("内容已复制！");
+        }
+    </script>
+</body>
+</html>
