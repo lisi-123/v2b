@@ -31,7 +31,13 @@ yum install -y wget && wget -O install.sh http://www.aapanel.com/script/install_
 ## 3. 解除被禁止的函数
 通过 aaPanel 面板 > App Store > 找到 PHP 7.4，点击 "Setting（设置）" > "Disabled functions（禁用函数）" 将以下函数从列表中删除：
 
-putenv, proc_open, pcntl_alarm,  pcntl_signal
+putenv
+
+proc_open
+
+pcntl_alarm
+
+pcntl_signal
 
 
 <br>
