@@ -16,6 +16,7 @@ yum install -y wget && wget -O install.sh http://www.aapanel.com/script/install_
 ☑️ Nginx 1.17
 ☑️ MySQL 5.6
 ☑️ PHP 7.4
+
 选择 "Fast" 快速编译后进行安装。
 
 <br>
