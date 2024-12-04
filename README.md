@@ -24,7 +24,9 @@ yum install -y wget && wget -O install.sh http://www.aapanel.com/script/install_
 <br>
 
 ## 2. 安装 Redis、fileinfo
-通过 aaPanel 面板 > App Store（软件商店） > 找到 PHP 7.4，点击 "Setting（设置）" > "Install extensions（安装扩展）"，安装 redis 和 fileinfo 扩展。
+通过 aaPanel 面板 > App Store（软件商店） > 找到 PHP 7.4，点击 "Setting（设置）" > "Install extensions（安装扩展）"
+
+安装 redis 和 fileinfo 扩展。
 
 <br>
 
