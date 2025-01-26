@@ -84,6 +84,8 @@ sh init.sh
 
 Site directory(网站目录) > Running directory（运行目录）: 选择 /public 并保存。
 
+<br>
+
 URL rewrite 填入以下伪静态信息：
 ```bash
 location /downloads {
