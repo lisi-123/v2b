@@ -102,7 +102,6 @@ location ~ .*\.(js|css)?$
     access_log /dev/null; 
 }
 
-
 ```
 
 <br>
