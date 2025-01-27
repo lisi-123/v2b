@@ -95,11 +95,13 @@ location / {
     try_files $uri $uri/ /index.php$is_args$query_string;  
 }
 
-location ~ .*\.(js|css)?$ {
-    expires 1h;
+location ~ .*\.(js|css)?$
+{
+    expires      1h;
     error_log off;
     access_log /dev/null; 
 }
+
 
 ```
 
