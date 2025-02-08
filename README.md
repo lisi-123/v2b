@@ -19,7 +19,7 @@ yum install -y wget && wget -O install.sh http://www.aapanel.com/script/install_
 
 ☑️ PHP 7.4（或更高）
 
-（版本选择略有不同，但是亲测可用）
+
 
 选择 "Fast" 快速编译后进行安装。
 
