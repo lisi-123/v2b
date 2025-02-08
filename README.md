@@ -151,6 +151,8 @@ Processes: 填写 "1"
 
 <br>
 
+如果访问不了，大概是文件没有给755权限。去设置一下就好了
+
 本教程仅供自用，有问题请联系 [https://t.me/@talkingstick233_bot](https://t.me/talkingstick233_bot
 )
 
