@@ -2,14 +2,13 @@
 
 ## 1. 配置 aaPanel
 
-你需要在 aaPanel 选择你的系统获得安装方式。这里以 CentOS 7+ 作为系统环境进行安装。
-
-官方建议使用 CentOS 7+ 安装aaPanel，其他系统可能会有未知问题（其实应该没啥问题）。
+推荐使用debian12安装最新的宝塔面板
 
 ```bash
-yum install -y wget && wget -O install.sh http://www.aapanel.com/script/install_6.0_en.sh && bash install.sh
+wget -O install.sh http://v820.hostcli.com/install/install-ubuntu_6.0.sh && bash install.sh
+
 ```
-也可以去这里寻找对应版本的宝塔开心版：https://www.hostcli.com/
+其他系统去这里寻找对应版本的宝塔开心版：https://www.hostcli.com/
 
 安装完成后我们登陆 aaPanel 进行环境的安装，选择使用 LNMP 环境安装方式，并勾选以下内容：
 
