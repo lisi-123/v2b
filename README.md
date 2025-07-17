@@ -167,6 +167,13 @@ Processes: 填写 "1"
 'return_url' => config('v2board.app_url') . '/#/dashboard/checkout/' . $order['trade_no'], 
 ```
 
+如果想要支付后转到一个固定的url，也可以考虑直接写死，比如：
+```
+'return_url' => 'https://example.com',
+```
+https://example.com 更换为想为支付用户展示的url
+
+
 
 本教程仅供自用，有问题请联系 [https://t.me/@talkingstick233_bot](https://t.me/talkingstick233_bot
 )
