@@ -152,6 +152,20 @@ Processes: 填写 "1"
 
 如果访问不了，大概是文件没有给755权限。去设置一下就好了
 
+
+## 主题转跳修改
+
+使用第三方主题后，支付完成后不能正确跳转的请修改 epay.php
+
+```
+ 'return_url' => $order['return_url'], 
+```
+修改为：
+```
+'return_url' => config('v2board.app_url') . '/#/dashboard/checkout/' . $order['trade_no'], 
+```
+
+
 本教程仅供自用，有问题请联系 [https://t.me/@talkingstick233_bot](https://t.me/talkingstick233_bot
 )
 
