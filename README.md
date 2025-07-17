@@ -156,7 +156,7 @@ Processes: 填写 "1"
 
 ## 主题转跳修改
 
-使用第三方主题后，支付完成后不能正确跳转的请修改 /www/wwwroot/机场文件夹/app/Payments/EPay.php
+使用第三方主题，支付完成后不能正确跳转的请修改 /www/wwwroot/机场文件夹/app/Payments/EPay.php
 
 找到：
 ```
