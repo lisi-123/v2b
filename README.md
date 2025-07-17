@@ -176,6 +176,21 @@ Processes: 填写 "1"
 ```
 https://example.com 更换为想为支付用户展示的url
 
+<br>
+
+修改php文件后，一般需要刷新设置缓存，重启队列。
+
+cd /www/wwwroot/机场文件夹
+
+```
+php artisan config:clear
+php artisan config:cache
+php artisan horizon:terminate
+
+```
+
+不会也可以直接重启vps
+
 
 <br>
 
