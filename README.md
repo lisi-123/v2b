@@ -152,45 +152,6 @@ Processes: 填写 "1"
 
 如果访问不了，大概是文件没有给755权限。去设置一下就好了
 
-<br>
-
-## 主题转跳修改
-
-使用第三方主题，支付完成后不能正确跳转的请修改 /www/wwwroot/机场文件夹/app/Payments/EPay.php
-
-找到：
-```
- 'return_url' => $order['return_url'], 
-```
-修改为：
-```
-'return_url' => config('v2board.app_url') . '/#/dashboard/checkout/' . $order['trade_no'], 
-```
-
-<br>
-
-如果想要支付后转到一个固定的url，也可以考虑直接写死，比如：
-
-```
-'return_url' => 'https://example.com',
-```
-https://example.com 更换为想为支付用户展示的url
-
-<br>
-
-修改php文件后，一般需要刷新设置缓存，重启队列。
-
-cd /www/wwwroot/机场文件夹
-
-```
-php artisan config:clear
-php artisan config:cache
-php artisan horizon:terminate
-
-```
-
-不会也可以直接重启vps
-
 
 <br>
 
