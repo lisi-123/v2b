@@ -188,6 +188,7 @@ access_log /dev/null;
 <br>
 
 进程守护里加一条
+
 启动命令：
 ```bash
 php -c cli-php.ini webman.php start
