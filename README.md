@@ -158,3 +158,40 @@ Processes: 填写 "1"
 )
 
 
+## 9. 开启webman服务
+伪静态修改为：
+```bash
+location /downloads {
+}
+
+location / {
+try_files $uri $uri/ @backend;
+}
+
+location ~ (/config/|/manage/|/webhook|/payment|/order|/theme/) {
+try_files $uri $uri/ /index.php$is_args$query_string;
+}
+
+location @backend {
+proxy_set_header Host $http_host;
+proxy_pass http://127.0.0.1:6600;
+}
+
+location ~ .*\.(js|css)?$
+{
+expires 1h;
+error_log off;
+access_log /dev/null; 
+}
+```
+
+<br>
+
+进程守护里加一条
+启动命令：
+```bash
+php -c cli-php.ini webman.php start
+```
+进程目录：机场文件的路径
+
+
