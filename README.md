@@ -202,8 +202,9 @@ php -c cli-php.ini webman.php start
 搬站时，将这两个文件直接复制到新站，可以把数据库里没有的设置一起搬过去
 
 /www/wwwroot/机场目录/bootstrap/cache/config.php
+
 /www/wwwroot/机场目录/config/v2board.php
 
 
-
+<br><br>
 
