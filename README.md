@@ -16,7 +16,7 @@ wget -O install.sh http://v820.hostcli.com/install/install-ubuntu_6.0.sh && bash
 
 ☑️ MySQL 5.7
 
-☑️ PHP 7.4（或更高）
+☑️ PHP 8.1（推荐此版本）
 
 
 
