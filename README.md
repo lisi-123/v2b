@@ -32,7 +32,7 @@ wget -O install.sh http://v820.hostcli.com/install/install-ubuntu_6.0.sh && bash
 <br>
 
 ## 3. 解除被禁止的函数
-通过 aaPanel 面板 > App Store > 找到 PHP 7.4，点击 "Setting（设置）" > "Disabled functions（禁用函数）" 将以下函数从列表中删除：
+通过 aaPanel 面板 > App Store > 找到 PHP 8.1，点击 "Setting（设置）" > "Disabled functions（禁用函数）" 将以下函数从列表中删除：
 
 putenv
 
@@ -52,7 +52,7 @@ pcntl_signal
 
 在 "Database（数据库）" 选择 MySQL
 
-在 "PHP Version" 选择 PHP 7.4
+在 "PHP Version" 选择 PHP 8.1
 
 添加站点后，把站点里自动生成的文件全部删掉
 
