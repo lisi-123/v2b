@@ -155,7 +155,6 @@ Processes: 填写 "1"
 
 <br>
 
-本教程仅供自用，有问题请联系 [https://t.me/@talkingstick233_bot](https://t.me/talkingstick233_bot
 )
 
 
