@@ -193,7 +193,7 @@ access_log /dev/null;
 ```bash
 php -c cli-php.ini webman.php start
 ```
-进程目录：机场文件的路径
+进程目录：机场文件夹的路径
 
 <br>
 
